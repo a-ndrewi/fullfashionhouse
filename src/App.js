@@ -8,6 +8,11 @@ const SecondHandDepot = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Google Sheets Integration
+  const [priceList, setPriceList] = useState([]);
+  const [loadingPrices, setLoadingPrices] = useState(true);
+  const [priceError, setPriceError] = useState(null);
 
   // Hero slider images
   const slides = [
@@ -41,69 +46,48 @@ const SecondHandDepot = () => {
     { item: 'Loturi Geci & Jachete', discount: '50%', price: 'de la 8,50 RON/kg', tag: 'Super Preț' }
   ];
 
-  // Price list data
-  const priceList = [
-    {
-      category: 'Haine Damă',
-      items: [
-        { name: 'Bluze Damă', price: '6,50', unit: 'kg' },
-        { name: 'Pantaloni Damă', price: '7,00', unit: 'kg' },
-        { name: 'Rochii', price: '8,50', unit: 'kg' },
-        { name: 'Fuste', price: '7,50', unit: 'kg' },
-        { name: 'Jeanși Damă', price: '8,00', unit: 'kg' },
-        { name: 'Geci & Jachete Damă', price: '10,00', unit: 'kg' }
-      ]
-    },
-    {
-      category: 'Haine Bărbați',
-      items: [
-        { name: 'Cămăși Bărbați', price: '6,00', unit: 'kg' },
-        { name: 'Tricouri Bărbați', price: '5,50', unit: 'kg' },
-        { name: 'Pantaloni Bărbați', price: '7,50', unit: 'kg' },
-        { name: 'Jeanși Bărbați', price: '8,50', unit: 'kg' },
-        { name: 'Sacouri & Costume', price: '12,00', unit: 'kg' },
-        { name: 'Geci & Jachete Bărbați', price: '11,00', unit: 'kg' }
-      ]
-    },
-    {
-      category: 'Încălțăminte',
-      items: [
-        { name: 'Pantofi Damă', price: '15,00', unit: 'kg' },
-        { name: 'Pantofi Bărbați', price: '16,00', unit: 'kg' },
-        { name: 'Adidași & Sneakers', price: '18,00', unit: 'kg' },
-        { name: 'Cizme & Ghete', price: '17,00', unit: 'kg' },
-        { name: 'Sandale', price: '14,00', unit: 'kg' }
-      ]
-    },
-    {
-      category: 'Accesorii & Altele',
-      items: [
-        { name: 'Genți & Rucsacuri', price: '9,00', unit: 'kg' },
-        { name: 'Curele & Curelușe', price: '8,00', unit: 'kg' },
-        { name: 'Șepci & Pălării', price: '7,00', unit: 'kg' },
-        { name: 'Fulare & Eșarfe', price: '6,00', unit: 'kg' },
-        { name: 'Jucării', price: '5,00', unit: 'kg' }
-      ]
-    },
-    {
-      category: 'Produse pentru Casă',
-      items: [
-        { name: 'Lenjerii de Pat', price: '7,00', unit: 'kg' },
-        { name: 'Prosoape', price: '6,50', unit: 'kg' },
-        { name: 'Perdele & Draperii', price: '5,50', unit: 'kg' },
-        { name: 'Perne & Pilote', price: '7,30', unit: 'kg' }
-      ]
-    },
-    {
-      category: 'Mix & Special',
-      items: [
-        { name: 'Mix Haine (Damă + Bărbați)', price: '6,00', unit: 'kg' },
-        { name: 'Mix Sezon Rece', price: '9,50', unit: 'kg' },
-        { name: 'Mix Sezon Cald', price: '6,50', unit: 'kg' },
-        { name: 'Loturi Speciale (la cerere)', price: 'La negociere', unit: '' }
-      ]
-    }
-  ];
+  // Fetch data from Google Sheets
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        setLoadingPrices(true);
+        const sheetId = '1-g-2Rq2zlHej3y03VIqWDw4Ajo4mu95xTYW2_KJFciw';
+        
+        // Use the published CSV format for public sheets
+        const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
+        
+        const response = await fetch(csvUrl);
+        const csvText = await response.text();
+        
+        // Parse CSV
+        const rows = csvText.split('\n').slice(1); // Skip header row
+        const items = rows
+          .filter(row => row.trim())
+          .map(row => {
+            const columns = row.split(',');
+            return {
+              code: columns[0]?.trim() || '',
+              name: columns[1]?.trim() || '',
+              price: columns[2]?.trim() || '0'
+            };
+          })
+          .filter(item => item.name && item.price && item.code);
+
+        setPriceList(items);
+        setLoadingPrices(false);
+        setPriceError(null);
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+        setPriceError('Nu s-au putut încărca prețurile. Vă rugăm reîncărcați pagina.');
+        setLoadingPrices(false);
+      }
+    };
+
+    fetchPrices();
+    // Refresh every 30 seconds
+    const interval = setInterval(fetchPrices, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   // State for category carousels
   const [categorySlides, setCategorySlides] = useState([0, 0, 0]);
@@ -151,16 +135,16 @@ const SecondHandDepot = () => {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
-  const whatsappNumber = '+40721183189';
+  const whatsappNumber = '+40769787780';
   const whatsappMessage = encodeURIComponent('Bună ziua! Sunt interesat de loturile de haine second hand. Aș dori mai multe detalii.');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   // Contact info
   const contactInfo = {
     address: 'Strada Exemplu, Nr. 123, București, România',
-    phone: '+40 721 183 189',
+    phone: '+40 769 787 780',
     email: 'contact@fullfashionhouse.ro',
-    coordinates: { lat: 44.4268, lng: 26.1025 } // Bucharest coordinates - placeholder
+    coordinates: { lat: 44.4268, lng: 26.1025 }
   };
 
   // Categories data for the categories page
@@ -503,7 +487,7 @@ const SecondHandDepot = () => {
     </div>
   );
 
-  // Price List Page Component
+  // Price List Page Component - WITH GOOGLE SHEETS INTEGRATION
   const PriceListPage = () => (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -511,9 +495,12 @@ const SecondHandDepot = () => {
           <FileText className="w-16 h-16 mx-auto mb-4 text-indigo-600" />
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Listă Prețuri</h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-            Toate prețurile sunt orientative și pot varia în funcție de cantitate și sezon. 
-            Contactați-ne pentru oferte personalizate!
+            Toate prețurile sunt actualizate în timp real. Contactați-ne pentru oferte personalizate!
           </p>
+          <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-gray-500">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span>Actualizat automat</span>
+          </div>
         </div>
 
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 sm:p-8 mb-12 text-white text-center">
@@ -523,43 +510,68 @@ const SecondHandDepot = () => {
           <p className="text-xs sm:text-sm mt-4 opacity-75">* Greutatea sacilor: 15-20 kg în funcție de sortiment</p>
         </div>
 
-        {priceList.map((section, idx) => (
-          <div key={idx} className="mb-8">
-            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-2xl p-4 sm:p-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">{section.category}</h2>
-            </div>
-            <div className="bg-white rounded-b-2xl shadow-lg overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
-                        Produs
-                      </th>
-                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
-                        Preț
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {section.items.map((item, itemIdx) => (
-                      <tr key={itemIdx} className="hover:bg-indigo-50 transition">
-                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-gray-900 font-medium">
-                          {item.name}
-                        </td>
-                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-right">
-                          <span className="text-lg sm:text-2xl font-bold text-indigo-600">
-                            {item.price} {item.unit && `RON/${item.unit}`}
-                          </span>
-                        </td>
+        {loadingPrices ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <p className="mt-4 text-gray-600">Se încarcă prețurile...</p>
+          </div>
+        ) : priceError ? (
+          <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center">
+            <p className="text-red-600 font-medium">{priceError}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-medium transition"
+            >
+              Reîncarcă Pagina
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="mb-8">
+              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-2xl p-4 sm:p-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Lista Completă de Produse</h2>
+              </div>
+              <div className="bg-white rounded-b-2xl shadow-lg overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider w-20">
+                          Cod
+                        </th>
+                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
+                          Denumire Produs
+                        </th>
+                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
+                          Preț (RON/kg)
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {priceList.map((item, itemIdx) => (
+                        <tr key={itemIdx} className="hover:bg-indigo-50 transition">
+                          <td className="px-4 sm:px-6 py-3 sm:py-4">
+                            <span className="inline-flex items-center justify-center w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full text-xs font-bold">
+                              {item.code}
+                            </span>
+                          </td>
+                          <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-gray-900 font-medium">
+                            {item.name}
+                          </td>
+                          <td className="px-4 sm:px-6 py-3 sm:py-4 text-right">
+                            <span className="text-lg sm:text-2xl font-bold text-indigo-600">
+                              {item.price} RON
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          </>
+        )}
 
         <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-8 mt-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
@@ -600,7 +612,7 @@ const SecondHandDepot = () => {
             <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7 mr-2 sm:mr-3" />
             Comandă pe WhatsApp
           </a>
-          <p className="mt-4 text-sm sm:text-base text-gray-600">Sau sunați la: <a href="tel:+40721183189" className="font-bold text-indigo-600 hover:underline">+40 721 183 189</a></p>
+          <p className="mt-4 text-sm sm:text-base text-gray-600">Sau sunați la: <a href="tel:+40769787780" className="font-bold text-indigo-600 hover:underline">+40 769 787 780</a></p>
         </div>
       </div>
     </div>
@@ -858,7 +870,7 @@ const SecondHandDepot = () => {
           <ShoppingBag className="w-12 h-12 mx-auto mb-4 text-indigo-400" />
           <h3 className="text-2xl font-bold mb-2">FullFashionHouse</h3>
           <p className="text-gray-400 mb-6">Calitate Premium, Prețuri Avantajoase</p>
-          <p className="text-sm text-gray-500">© 2024 FullFashionHouse. Toate drepturile rezervate.</p>
+          <p className="text-sm text-gray-500">© 2025 FullFashionHouse. Toate drepturile rezervate.</p>
         </div>
       </footer>
     </div>
