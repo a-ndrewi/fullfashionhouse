@@ -146,7 +146,7 @@ const SecondHandDepot = () => {
       clearTimeout(popupTimer);
       window.removeEventListener('scroll', scrollHandler);
     };
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
