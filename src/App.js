@@ -714,7 +714,7 @@ const SecondHandDepot = () => {
               <ShoppingBag className={`w-8 h-8 ${isScrolled || currentPage !== 'home' ? 'text-indigo-600' : 'text-white'}`} />
               <div>
                 <h1 className={`text-xl sm:text-2xl font-bold ${isScrolled || currentPage !== 'home' ? 'text-gray-900' : 'text-white'}`}>FullFashionHouse</h1>
-                <p className={`text-xs ${isScrolled || currentPage !== 'home' ? 'text-gray-500' : 'text-white/90'}`}>Calitate Premium din Austria</p>
+                <p className={`text-xs ${isScrolled || currentPage !== 'home' ? 'text-gray-500' : 'text-white/90'}`}>Calitate Premium</p>
               </div>
             </div>
             
