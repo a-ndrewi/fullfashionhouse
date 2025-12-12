@@ -22,12 +22,12 @@ const SecondHandDepot = () => {
       subtitle: 'Produse de Calitate 1 + Extra'
     },
     {
-      url: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&q=80',
+      url: 'https://images.pexels.com/photos/7543641/pexels-photo-7543641.jpeg?_gl=1*q361jw*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzIzMDIkajU5JGwwJGgw',
       title: 'Încălțăminte Premium',
       subtitle: 'Provenință Austria - Calitate Superioară'
     },
     {
-      url: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80',
+      url: 'https://images.pexels.com/photos/7679659/pexels-photo-7679659.jpeg?_gl=1*1nuvpyj*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzI2MDQkajYwJGwwJGgw',
       title: 'Haine Damă & Bărbați',
       subtitle: 'Sortimente Diverse - Prețuri Avantajoase'
     }
@@ -141,10 +141,10 @@ const SecondHandDepot = () => {
 
   // Contact info
   const contactInfo = {
-    address: 'Strada Exemplu, Nr. 123, București, România',
+    address: 'Strada Mărgeanului, Nr. 99, București, România',
     phone: '+40 769 787 780',
     email: 'contact@fullfashionhouse.ro',
-    coordinates: { lat: 44.4268, lng: 26.1025 }
+    coordinates: { lat: 44.4122, lng: 26.0607 }
   };
 
   // Categories data for the categories page
@@ -168,7 +168,7 @@ const SecondHandDepot = () => {
       images: [
         'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80',
         'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80',
-        'https://images.unsplash.com/photo-1558769132-cb1aea1f5c6c?w=800&q=80'
+        'https://images.pexels.com/photos/7679659/pexels-photo-7679659.jpeg?_gl=1*1nuvpyj*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzI2MDQkajYwJGwwJGgw'
       ]
     },
     {
@@ -177,7 +177,7 @@ const SecondHandDepot = () => {
       features: ['Toate Mărimile', 'Stare Excelentă', 'Branduri Cunoscute', 'Modele Diverse'],
       priceRange: '14,00 - 18,00 RON/kg',
       images: [
-        'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&q=80',
+        'https://images.pexels.com/photos/5863630/pexels-photo-5863630.jpeg?_gl=1*1a1t51i*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzI3NjgkajU5JGwwJGgw',
         'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80',
         'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=80'
       ]
@@ -441,10 +441,9 @@ const SecondHandDepot = () => {
           </div>
 
           {/* Map Card */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div className="h-full min-h-[600px]">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[600px]">
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.8537597832997!2d${contactInfo.coordinates.lng}!3d${contactInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDI1JzM2LjUiTiAyNsKwMDYnMDkuMCJF!5e0!3m2!1sen!2sro!4v1234567890123!5m2!1sen!2sro`}
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${contactInfo.coordinates.lat},${contactInfo.coordinates.lng}&zoom=16`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -453,7 +452,6 @@ const SecondHandDepot = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="FullFashionHouse Location"
               />
-            </div>
           </div>
         </div>
 
@@ -868,9 +866,9 @@ const SecondHandDepot = () => {
       <footer className="bg-gray-900 text-white py-12 mt-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <ShoppingBag className="w-12 h-12 mx-auto mb-4 text-indigo-400" />
-          <h3 className="text-2xl font-bold mb-2">FullFashionHouse</h3>
+          <h3 className="text-2xl font-bold mb-2">FullFashionHouse SRL - CUI: 49077961 - NR. REG. COMERTULUI: J2023021064408</h3>
           <p className="text-gray-400 mb-6">Calitate Premium, Prețuri Avantajoase</p>
-          <p className="text-sm text-gray-500">© 2025 FullFashionHouse. Toate drepturile rezervate.</p>
+          <p className="text-sm text-gray-500">© 2025 FullFashionHouse SRL. Toate drepturile rezervate.</p>
         </div>
       </footer>
     </div>
