@@ -61,7 +61,7 @@ const PriceListPage = ({ whatsappLink }) => {
         </div>
 
         <div className="bg-primary rounded-2xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-12 text-background text-center">
-          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">89 Ofertă Specială</h2>
+          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">Ofertă Specială</h2>
           <p className="text-base xs:text-lg sm:text-xl mb-1 sm:mb-2">Livrare GRATUITĂ la comenzi peste <span className="font-black text-xl xs:text-2xl sm:text-3xl">3.900 RON</span></p>
           <p className="text-xs xs:text-sm sm:text-lg opacity-90">Cost transport standard: 25 RON / sac</p>
           <p className="text-xs sm:text-sm mt-2 sm:mt-4 opacity-75">* Greutatea sacilor: 15-20 kg în funcție de sortiment</p>

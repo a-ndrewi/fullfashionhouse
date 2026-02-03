@@ -31,13 +31,13 @@ const DealPopup = ({ showDealPopup, setShowDealPopup, whatsappLink, currentPage 
           <p className="text-primary/60 mb-6 text-lg">Reduceri de până la <span className="text-accent font-bold text-2xl">50%</span> la loturi selectate de haine second hand!</p>
           
           <div className="bg-background/80 rounded-xl p-4 mb-6">
-            <p className="text-sm text-primary font-medium">28 Loturi Haine Damă - 40% REDUCERE</p>
-            <p className="text-sm text-primary font-medium">28 Loturi Încălțăminte - 35% REDUCERE</p>
-            <p className="text-sm text-primary font-medium">28 Loturi Geci & Jachete - 50% REDUCERE</p>
+            <p className="text-sm text-primary font-medium">Loturi Haine Damă - 40% REDUCERE</p>
+            <p className="text-sm text-primary font-medium">Loturi Încălțăminte - 35% REDUCERE</p>
+            <p className="text-sm text-primary font-medium">Loturi Geci & Jachete - 50% REDUCERE</p>
           </div>
 
           <div className="bg-accent/10 border-2 border-accent/30 rounded-lg p-3 mb-6">
-            <p className="text-primary font-semibold text-sm">ce6 Livrare GRATUITĂ la comenzi peste 3.900 RON</p>
+            <p className="text-primary font-semibold text-sm">Livrare GRATUITĂ la comenzi peste 3.900 RON</p>
           </div>
 
           <p className="text-red-500 font-semibold mb-6 flex items-center justify-center">

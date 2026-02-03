@@ -43,11 +43,14 @@ const SecondHandDepot = () => {
   }, []);
 
 
-  // Scroll to top on page change or refresh
+  // Scroll to top on page change or refresh, except when navigating to a specific category
   const pageKey = typeof currentPage === 'string' ? currentPage : currentPage.page;
+  const selectedCategory = typeof currentPage === 'object' ? currentPage.category : null;
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [pageKey]);
+    if (!(pageKey === 'categories' && selectedCategory)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [pageKey, selectedCategory]);
 
   const whatsappLink = getWhatsappLink();
 
