@@ -42,10 +42,12 @@ const SecondHandDepot = () => {
     document.title = 'FullFashionHouse - Haine Second Hand Premium';
   }, []);
 
+
   // Scroll to top on page change or refresh
+  const pageKey = typeof currentPage === 'string' ? currentPage : currentPage.page;
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [typeof currentPage === 'string' ? currentPage : currentPage.page]);
+  }, [pageKey]);
 
   const whatsappLink = getWhatsappLink();
 
