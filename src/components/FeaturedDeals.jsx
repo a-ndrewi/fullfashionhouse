@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MessageCircle } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const FeaturedDeals = ({ featuredDeals, whatsappLink }) => {
   return (
