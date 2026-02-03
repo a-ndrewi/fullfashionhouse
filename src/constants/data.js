@@ -17,10 +17,10 @@ export const SLIDES = [
 ];
 
 export const CATEGORIES = [
-  { name: 'Încălțăminte', icon: '👟', count: '200+ produse' },
-  { name: 'Jachete & Geci', icon: '🧥', count: '150+ produse' },
-  { name: 'Rochii & Fuste', icon: '👗', count: '180+ produse' },
-  { name: 'Accesorii', icon: '👜', count: '120+ produse' }
+  { name: 'Haine de Brand' },
+  { name: 'Haine Mix' },
+  { name: 'Încălțăminte Premium' },
+  { name: 'Încălțăminte Mix' }
 ];
 
 export const FEATURED_DEALS = [
@@ -62,14 +62,23 @@ export const CATEGORIES_DATA = [
       'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&q=80',
       'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=800&q=80'
     ]
+  },
+  {
+    name: 'Încălțăminte Mix',
+    description: 'Loturile de încălțăminte mix includ o varietate de modele pentru damă, bărbați și copii, ideale pentru orice sezon și pentru revânzare. Găsești pantofi sport, casual, sandale și cizme la prețuri excelente.',
+    features: ['Varietate Sezonală', 'Prețuri Accesibile', 'Stocuri Mari', 'Ideal pentru Revânzare'],
+    priceRange: '8,00 - 13,00 RON/kg',
+    images: [
+      'https://d1nymbkeomeoqg.cloudfront.net/photos/28/73/408849_7358_XL.jpg'
+    ]
   }
 ];
 
 export const CONTACT_INFO = {
-  address: 'Strada Mărgeanului, Nr. 99, bucuresti, România',
+  address: 'Soseaua Clinceni nr.3, Bragadiru, Ilfov',
   phone: '+40 769 787 780',
   email: 'contact@fullfashionhouse.ro',
-  coordinates: { lat: 44.4122, lng: 26.0607 }
+  coordinates: { lat: 44.374098, lng: 25.968964 }
 };
 
 export const WHATSAPP_NUMBER = '+40769787780';

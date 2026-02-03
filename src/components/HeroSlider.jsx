@@ -24,7 +24,7 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
               <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8">{slide.subtitle}</p>
               <button 
                 onClick={() => setCurrentPage('categories')}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition transform hover:scale-105 shadow-2xl"
+                className="bg-accent hover:bg-accent/80 text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition transform hover:scale-105 shadow-2xl"
               >
                 Explorează Colecția
               </button>

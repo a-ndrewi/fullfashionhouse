@@ -46,30 +46,30 @@ const PriceListPage = ({ whatsappLink }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <FileText className="w-16 h-16 mx-auto mb-4 text-indigo-600" />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Listă Prețuri</h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+    <div className="min-h-screen bg-background pt-20">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8 sm:py-12 md:py-16">
+        <div className="text-center mb-8 sm:mb-12">
+          <FileText className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-4 text-accent" />
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 sm:mb-4">Listă Prețuri</h1>
+          <p className="text-base xs:text-lg sm:text-xl text-primary/60 max-w-2xl mx-auto px-2 sm:px-4">
             Toate prețurile sunt actualizate în timp real. Contactați-ne pentru oferte personalizate!
           </p>
-          <div className="mt-4 flex items-center justify-center space-x-2 text-sm text-gray-500">
+          <div className="mt-2 sm:mt-4 flex items-center justify-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-primary/40">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span>Actualizat automat</span>
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 sm:p-8 mb-12 text-white text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">🎉 Ofertă Specială</h2>
-          <p className="text-lg sm:text-xl mb-2">Livrare GRATUITĂ la comenzi peste <span className="font-black text-2xl sm:text-3xl">3.900 RON</span></p>
-          <p className="text-base sm:text-lg opacity-90">Cost transport standard: 25 RON / sac</p>
-          <p className="text-xs sm:text-sm mt-4 opacity-75">* Greutatea sacilor: 15-20 kg în funcție de sortiment</p>
+        <div className="bg-primary rounded-2xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-12 text-background text-center">
+          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">89 Ofertă Specială</h2>
+          <p className="text-base xs:text-lg sm:text-xl mb-1 sm:mb-2">Livrare GRATUITĂ la comenzi peste <span className="font-black text-xl xs:text-2xl sm:text-3xl">3.900 RON</span></p>
+          <p className="text-xs xs:text-sm sm:text-lg opacity-90">Cost transport standard: 25 RON / sac</p>
+          <p className="text-xs sm:text-sm mt-2 sm:mt-4 opacity-75">* Greutatea sacilor: 15-20 kg în funcție de sortiment</p>
         </div>
 
         {loadingPrices ? (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
             <p className="mt-4 text-gray-600">Se încarcă prețurile...</p>
           </div>
         ) : priceError ? (
@@ -84,39 +84,39 @@ const PriceListPage = ({ whatsappLink }) => {
           </div>
         ) : (
           <>
-            <div className="mb-8">
-              <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-t-2xl p-4 sm:p-6">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white">Lista Completă de Produse</h2>
+            <div className="mb-6 sm:mb-8">
+              <div className="bg-primary rounded-t-2xl p-3 xs:p-4 sm:p-6">
+                <h2 className="text-lg xs:text-xl sm:text-2xl font-bold text-white">Lista Completă de Produse</h2>
               </div>
               <div className="bg-white rounded-b-2xl shadow-lg overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full">
+                  <table className="w-full min-w-[400px] text-xs xs:text-sm sm:text-base">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider w-20">
+                        <th className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider w-16 xs:w-20">
                           Cod
                         </th>
-                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
+                        <th className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-left text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
                           Denumire Produs
                         </th>
-                        <th className="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
+                        <th className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-right text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
                           Preț (RON/kg)
                         </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       {priceList.map((item, itemIdx) => (
-                        <tr key={itemIdx} className="hover:bg-indigo-50 transition">
-                          <td className="px-4 sm:px-6 py-3 sm:py-4">
-                            <span className="inline-flex items-center justify-center w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full text-xs font-bold">
+                        <tr key={itemIdx} className="hover:bg-background/80 transition">
+                          <td className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4">
+                            <span className="inline-flex items-center justify-center w-8 h-8 xs:w-10 xs:h-10 bg-accent/10 text-accent rounded-full text-xs font-bold">
                               {item.code}
                             </span>
                           </td>
-                          <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-gray-900 font-medium">
+                          <td className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-xs xs:text-sm sm:text-base text-gray-900 font-medium">
                             {item.name}
                           </td>
-                          <td className="px-4 sm:px-6 py-3 sm:py-4 text-right">
-                            <span className="text-lg sm:text-2xl font-bold text-indigo-600">
+                          <td className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-right">
+                            <span className="text-base xs:text-lg sm:text-2xl font-bold text-accent">
                               {item.price} RON
                             </span>
                           </td>
@@ -137,23 +137,23 @@ const PriceListPage = ({ whatsappLink }) => {
           </h3>
           <ul className="space-y-3 text-gray-700">
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-3">✓</span>
+              <span className="text-accent font-bold mr-3">✓</span>
               <span>Toate produsele sunt de calitate 1 + extra, provenite din Austria</span>
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-3">✓</span>
+              <span className="text-accent font-bold mr-3">✓</span>
               <span>Marfa se vinde cu certificate de dezinfecție, dezinsecție și curățare</span>
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-3">✓</span>
+              <span className="text-accent font-bold mr-3">✓</span>
               <span>Livrare rapidă prin curier, oriunde în țară, în 24-48 ore</span>
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-3">✓</span>
+              <span className="text-accent font-bold mr-3">✓</span>
               <span>Plata se poate face ramburs sau transfer bancar</span>
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-3">✓</span>
+              <span className="text-accent font-bold mr-3">✓</span>
               <span>Reduceri speciale pentru comenzi mari și clienți fideli</span>
             </li>
           </ul>
@@ -169,7 +169,7 @@ const PriceListPage = ({ whatsappLink }) => {
             <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7 mr-2 sm:mr-3" />
             Comandă pe WhatsApp
           </a>
-          <p className="mt-4 text-sm sm:text-base text-gray-600">Sau sunați la: <a href="tel:+40769787780" className="font-bold text-indigo-600 hover:underline">+40 769 787 780</a></p>
+          <p className="mt-4 text-sm sm:text-base text-primary/60">Sau sunați la: <a href="tel:+40769787780" className="font-bold text-accent hover:underline">+40 769 787 780</a></p>
         </div>
       </div>
     </div>

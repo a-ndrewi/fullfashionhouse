@@ -27,6 +27,7 @@ import { useScrollPosition, useSlideAutoScroll, useDealPopup } from './hooks';
 const SecondHandDepot = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showCookies, setShowCookies] = useState(true);
+  // currentPage can be string or { page, category }
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
@@ -39,19 +40,17 @@ const SecondHandDepot = () => {
   // Setup page title and favicon
   useEffect(() => {
     document.title = 'FullFashionHouse - Haine Second Hand Premium';
-    
-    // Create and update favicon
-    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/svg+xml';
-    link.rel = 'icon';
-    link.href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%236366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>';
-    document.getElementsByTagName('head')[0].appendChild(link);
   }, []);
+
+  // Scroll to top on page change or refresh
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [typeof currentPage === 'string' ? currentPage : currentPage.page]);
 
   const whatsappLink = getWhatsappLink();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
       <Navigation 
         isScrolled={isScrolled}
@@ -62,7 +61,7 @@ const SecondHandDepot = () => {
       />
 
       {/* Page Content */}
-      {currentPage === 'home' && (
+      {(currentPage === 'home' || (typeof currentPage === 'object' && currentPage.page === 'home')) && (
         <HomePage 
           slides={SLIDES}
           currentSlide={currentSlide}
@@ -73,21 +72,22 @@ const SecondHandDepot = () => {
           whatsappLink={whatsappLink}
         />
       )}
-      
-      {currentPage === 'prices' && (
+
+      {(currentPage === 'prices' || (typeof currentPage === 'object' && currentPage.page === 'prices')) && (
         <PriceListPage whatsappLink={whatsappLink} />
       )}
-      
-      {currentPage === 'categories' && (
+
+      {(currentPage === 'categories' || (typeof currentPage === 'object' && currentPage.page === 'categories')) && (
         <CategoriesPage 
           categoriesData={CATEGORIES_DATA}
           whatsappLink={whatsappLink}
           contactInfo={CONTACT_INFO}
           setCurrentPage={setCurrentPage}
+          selectedCategory={typeof currentPage === 'object' ? currentPage.category : null}
         />
       )}
-      
-      {currentPage === 'contact' && (
+
+      {(currentPage === 'contact' || (typeof currentPage === 'object' && currentPage.page === 'contact')) && (
         <ContactPage 
           contactInfo={CONTACT_INFO}
           whatsappLink={whatsappLink}
