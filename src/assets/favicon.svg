@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Background -->
+  <rect width="128" height="128" fill="#6366f1" rx="24"/>
+  
+  <!-- Fashion icon - stylized hanger with clothing -->
+  <g transform="translate(64, 64)">
+    <!-- Hanger top -->
+    <path d="M -20 -30 Q -20 -35 -15 -35 L 15 -35 Q 20 -35 20 -30" 
+          fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Hanger hook -->
+    <circle cx="0" cy="-32" r="4" fill="white"/>
+    
+    <!-- Left shoulder -->
+    <path d="M -20 -28 Q -28 -22 -32 -8" 
+          fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Right shoulder -->
+    <path d="M 20 -28 Q 28 -22 32 -8" 
+          fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Dress/shirt body -->
+    <path d="M -20 -28 L -24 10 Q -24 16 -18 16 L 18 16 Q 24 16 24 10 L 20 -28" 
+          fill="white" opacity="0.9"/>
+    
+    <!-- Collar -->
+    <path d="M -8 -22 L 0 -16 L 8 -22" 
+          fill="#6366f1"/>
+    
+    <!-- Button details -->
+    <circle cx="0" cy="-8" r="2" fill="#6366f1"/>
+    <circle cx="0" cy="2" r="2" fill="#6366f1"/>
+    <circle cx="0" cy="12" r="2" fill="#6366f1"/>
+  </g>
+  
+  <!-- Sparkle accents -->
+  <g opacity="0.3" fill="white">
+    <circle cx="105" cy="20" r="2"/>
+    <circle cx="25" cy="105" r="2"/>
+    <path d="M 110 35 L 115 35 M 112.5 32.5 L 112.5 37.5" stroke="white" stroke-width="1" stroke-linecap="round"/>
+  </g>
+</svg>
