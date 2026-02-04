@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const lots = [
   { tag: 'Ofertă Limitată', item: 'Loturi Haine Damă', price: 'de la 5,50 RON/kg' },
@@ -12,7 +12,6 @@ const lots = [
 const FeaturedDeals = ({ featuredDealIndex, setFeaturedDealIndex }) => {
   const [dragStartX, setDragStartX] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
-  const containerRef = useRef();
 
   const handleDragStart = (e) => {
     setDragStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
@@ -25,13 +24,10 @@ const FeaturedDeals = ({ featuredDealIndex, setFeaturedDealIndex }) => {
   };
 
   const handleDragEnd = () => {
-    let swiped = false;
     if (dragOffset > 60) {
       setFeaturedDealIndex((prev) => (prev - 1 + lots.length) % lots.length);
-      swiped = true;
     } else if (dragOffset < -60) {
       setFeaturedDealIndex((prev) => (prev + 1) % lots.length);
-      swiped = true;
     }
     setDragStartX(null);
     setDragOffset(0);
@@ -55,7 +51,6 @@ const FeaturedDeals = ({ featuredDealIndex, setFeaturedDealIndex }) => {
         </div>
         <div
           className="flex justify-center items-center relative w-full"
-          ref={containerRef}
           onMouseDown={handleDragStart}
           onMouseMove={handleDragMove}
           onMouseUp={handleDragEnd}

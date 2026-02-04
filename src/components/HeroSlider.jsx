@@ -1,22 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-
-const slides = [
-  {
-    url: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&q=80',
-    title: 'Depozit Haine Second Hand',
-    subtitle: 'Produse de Calitate 1 + Extra'
-  },
-  {
-    url: 'https://images.pexels.com/photos/7543641/pexels-photo-7543641.jpeg?_gl=1*q361jw*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzIzMDIkajU5JGwwJGgw',
-    title: 'Încălțăminte Premium',
-    subtitle: 'Provenință Austria - Calitate Superioară'
-  },
-  {
-    url: 'https://images.pexels.com/photos/7679659/pexels-photo-7679659.jpeg?_gl=1*1nuvpyj*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzI2MDQkajYwJGwwJGgw',
-    title: 'Haine Damă & Bărbați',
-    subtitle: 'Sortimente Diverse - Prețuri Avantajoase'
-  }
-];
+import React, { useState } from 'react';
 
 const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) => {
   const [dragStartX, setDragStartX] = useState(null);
@@ -35,13 +17,10 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
     setDragOffset(clientX - dragStartX);
   };
   const handleDragEnd = () => {
-    let swiped = false;
     if (dragOffset > 60) {
       prevSlide();
-      swiped = true;
     } else if (dragOffset < -60) {
       nextSlide();
-      swiped = true;
     }
     setDragStartX(null);
     setDragOffset(0);
