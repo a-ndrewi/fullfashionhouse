@@ -13,8 +13,7 @@ const HomePage = ({ slides, currentSlide, setCurrentSlide, setCurrentPage, categ
         setCurrentPage={setCurrentPage}
       />
       <CategoriesHome 
-        categories={categories} 
-        setCurrentPage={setCurrentPage}
+        categories={categories}
       />
       <FeaturedDeals 
         featuredDeals={featuredDeals}

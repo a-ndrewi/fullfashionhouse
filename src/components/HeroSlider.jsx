@@ -1,16 +1,96 @@
-import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
 
-const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) => {
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+const slides = [
+  {
+    url: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&q=80',
+    title: 'Depozit Haine Second Hand',
+    subtitle: 'Produse de Calitate 1 + Extra'
+  },
+  {
+    url: 'https://images.pexels.com/photos/7543641/pexels-photo-7543641.jpeg?_gl=1*q361jw*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzIzMDIkajU5JGwwJGgw',
+    title: 'Încălțăminte Premium',
+    subtitle: 'Provenință Austria - Calitate Superioară'
+  },
+  {
+    url: 'https://images.pexels.com/photos/7679659/pexels-photo-7679659.jpeg?_gl=1*1nuvpyj*_ga*MTM1Mzc1NzIyMS4xNzY1NTMxOTYx*_ga_8JE65Q40S6*czE3NjU1MzE5NjAkbzEkZzEkdDE3NjU1MzI2MDQkajYwJGwwJGgw',
+    title: 'Haine Damă & Bărbați',
+    subtitle: 'Sortimente Diverse - Prețuri Avantajoase'
+  }
+];
+
+const HeroSlider = ({ setCurrentPage }) => {
+  const [current, setCurrent] = useState(0);
+  const [dragStartX, setDragStartX] = useState(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const autoSwipeRef = useRef();
+
+  // Auto-swipe
+  useEffect(() => {
+    autoSwipeRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(autoSwipeRef.current);
+  }, []);
+
+  // Pause auto-swipe and restart with delay when current changes
+  useEffect(() => {
+    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
+    const timeout = setTimeout(() => {
+      autoSwipeRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+      }, 4000);
+    }, 4000);
+    return () => clearTimeout(timeout);
+  }, [current]);
+
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+
+  // Drag/Swipe handlers
+  const handleDragStart = (e) => {
+    setDragStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
+    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
+  };
+  const handleDragMove = (e) => {
+    if (dragStartX === null) return;
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    setDragOffset(clientX - dragStartX);
+  };
+  const handleDragEnd = () => {
+    let swiped = false;
+    if (dragOffset > 60) {
+      prevSlide();
+      swiped = true;
+    } else if (dragOffset < -60) {
+      nextSlide();
+      swiped = true;
+    }
+    setDragStartX(null);
+    setDragOffset(0);
+    setTimeout(() => {
+      autoSwipeRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % slides.length);
+      }, 4000);
+    }, swiped ? 4000 : 0);
+  };
 
   return (
-    <div className="relative h-[500px] sm:h-[600px] overflow-hidden">
+    <div
+      className="relative h-[500px] sm:h-[600px] overflow-hidden"
+      onMouseDown={handleDragStart}
+      onMouseMove={handleDragMove}
+      onMouseUp={handleDragEnd}
+      onMouseLeave={handleDragEnd}
+      onTouchStart={handleDragStart}
+      onTouchMove={handleDragMove}
+      onTouchEnd={handleDragEnd}
+      style={{ cursor: dragStartX !== null ? 'grabbing' : 'grab' }}
+    >
       {slides.map((slide, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${idx === current ? 'opacity-100' : 'opacity-0'}`}
+          style={idx === current && dragOffset !== 0 ? { transform: `translateX(${dragOffset}px)` } : {}}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10" />
           <img
@@ -32,20 +112,15 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
           </div>
         </div>
       ))}
-      
-      <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full transition shadow-lg">
-        <ChevronLeft className="w-6 h-6 text-gray-800" />
-      </button>
-      <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/80 hover:bg-white p-3 rounded-full transition shadow-lg">
-        <ChevronRight className="w-6 h-6 text-gray-800" />
-      </button>
+
+      {/* Removed left/right arrow navigation buttons for a cleaner look */}
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentSlide(idx)}
-            className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white w-8' : 'bg-white/50'}`}
+            onClick={() => setCurrent(idx)}
+            className={`w-3 h-3 rounded-full transition-all ${idx === current ? 'bg-white w-8' : 'bg-white/50'}`}
           />
         ))}
       </div>

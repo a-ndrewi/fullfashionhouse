@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingBag, ChevronLeft, ChevronRight, MessageCircle, Sparkles, FileText } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ShoppingBag, ChevronLeft, ChevronRight, MessageCircle, FileText } from 'lucide-react';
 
 const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentPage, selectedCategory }) => {
+  const navigate = useNavigate();
   const [categorySlides, setCategorySlides] = useState(Array(categoriesData.length).fill(0));
   const sectionRefs = useRef([]);
 
@@ -155,7 +157,7 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
             Consultă pagina noastră de prețuri pentru informații detaliate despre toate sortimentele disponibile
           </p>
           <button
-            onClick={() => setCurrentPage('prices')}
+            onClick={() => navigate('/lista-preturi')}
             className="inline-flex items-center bg-background text-accent hover:bg-background/80 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition transform hover:scale-105 shadow-lg"
           >
             <FileText className="w-5 sm:w-6 h-5 sm:h-6 mr-2" />
@@ -166,12 +168,10 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
         {/* Special Offers */}
         <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6 sm:p-8">
           <div className="text-center mb-6">
-            <Sparkles className="w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-4 text-yellow-500" />
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Oferte Speciale</h2>
-            <p className="text-sm sm:text-base text-gray-600">Comenzi mari? Beneficiezi de prețuri preferențiale!</p>
+            <p className="text-sm sm:text-base text-gray-600">Reduceri preferențiale pentru comenzi mari!</p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
             <div className="text-center">
               <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
                 <p className="text-3xl sm:text-4xl font-bold text-accent mb-2">10%</p>
@@ -180,14 +180,14 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
             </div>
             <div className="text-center">
               <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-                <p className="text-3xl sm:text-4xl font-bold text-accent mb-2">15%</p>
-                <p className="text-sm sm:text-base text-gray-700 font-medium">Reducere la comenzi peste 10.000 RON</p>
+                <p className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">GRATIS</p>
+                <p className="text-sm sm:text-base text-gray-700 font-medium">Transport gratuit în București și Ilfov la comenzi peste 5.000 RON</p>
               </div>
             </div>
             <div className="text-center">
               <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md">
-                <p className="text-3xl sm:text-4xl font-bold text-green-600 mb-2">GRATIS</p>
-                <p className="text-sm sm:text-base text-gray-700 font-medium">Transport gratuit peste 3.900 RON</p>
+                <p className="text-2xl sm:text-3xl font-bold text-accent mb-2">Preferențial</p>
+                <p className="text-sm sm:text-base text-gray-700 font-medium">Reduceri suplimentare pentru comenzi mari</p>
               </div>
             </div>
           </div>

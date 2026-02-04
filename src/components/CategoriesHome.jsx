@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CategoriesHome = ({ categories, setCurrentPage }) => {
+const CategoriesHome = ({ categories }) => {
+  const navigate = useNavigate();
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
       <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Cumpără pe Categorii</h2>
@@ -8,7 +10,7 @@ const CategoriesHome = ({ categories, setCurrentPage }) => {
         {categories.map((cat, idx) => (
           <div
             key={idx}
-            onClick={() => setCurrentPage({ page: 'categories', category: cat.name })}
+            onClick={() => navigate('/categorii', { state: { selectedCategory: cat.name } })}
             className="bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer border border-gray-100"
           >
             <h3 className="text-xl font-semibold text-gray-900 mb-2">{cat.name}</h3>

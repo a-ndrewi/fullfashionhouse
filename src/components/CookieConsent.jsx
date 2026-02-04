@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const CookieConsent = ({ showCookies, setShowCookies }) => {
   useEffect(() => {
@@ -23,6 +24,9 @@ const CookieConsent = ({ showCookies, setShowCookies }) => {
           <span className="block text-base leading-relaxed text-background/90">
             Folosim cookie-uri pentru a îmbunătăți experiența ta și pentru îmbunătățiri de marketing. Continuând, accepți utilizarea cookie-urilor.
           </span>
+          <div className="mt-2">
+            <Link to="/termeni-conditii-cookie-uri" className="text-xs text-background/40 hover:underline">Termeni, Condiții & Cookie-uri</Link>
+          </div>
         </div>
         <div className="flex flex-row gap-3 w-full md:w-auto justify-center md:justify-end">
           <button

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Sparkles, MessageCircle } from 'lucide-react';
+import { FileText, MessageCircle } from 'lucide-react';
 
 const PriceListPage = ({ whatsappLink }) => {
   const [priceList, setPriceList] = useState([]);
@@ -62,8 +62,7 @@ const PriceListPage = ({ whatsappLink }) => {
 
         <div className="bg-primary rounded-2xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-12 text-background text-center">
           <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">Ofertă Specială</h2>
-          <p className="text-base xs:text-lg sm:text-xl mb-1 sm:mb-2">Livrare GRATUITĂ la comenzi peste <span className="font-black text-xl xs:text-2xl sm:text-3xl">3.900 RON</span></p>
-          <p className="text-xs xs:text-sm sm:text-lg opacity-90">Cost transport standard: 25 RON / sac</p>
+          <p className="text-base xs:text-lg sm:text-xl mb-1 sm:mb-2">Livrare GRATUITĂ la comenzi peste <span className="font-black text-xl xs:text-2xl sm:text-3xl">5.000 RON</span> în București</p>
           <p className="text-xs sm:text-sm mt-2 sm:mt-4 opacity-75">* Greutatea sacilor: 15-20 kg în funcție de sortiment</p>
         </div>
 
@@ -132,7 +131,6 @@ const PriceListPage = ({ whatsappLink }) => {
 
         <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-8 mt-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <Sparkles className="w-7 h-7 mr-3 text-yellow-500" />
             Informații Importante
           </h3>
           <ul className="space-y-3 text-gray-700">

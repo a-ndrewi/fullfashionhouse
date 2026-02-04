@@ -28,17 +28,11 @@ const DealPopup = ({ showDealPopup, setShowDealPopup, whatsappLink, currentPage 
             <Tag className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-primary mb-4">Ofertă Limitată!</h3>
-          <p className="text-primary/60 mb-6 text-lg">Reduceri de până la <span className="text-accent font-bold text-2xl">50%</span> la loturi selectate de haine second hand!</p>
-          
-          <div className="bg-background/80 rounded-xl p-4 mb-6">
-            <p className="text-sm text-primary font-medium">Loturi Haine Damă - 40% REDUCERE</p>
-            <p className="text-sm text-primary font-medium">Loturi Încălțăminte - 35% REDUCERE</p>
-            <p className="text-sm text-primary font-medium">Loturi Geci & Jachete - 50% REDUCERE</p>
-          </div>
+            <p className="text-primary/60 mb-6 text-lg">Prinde acum oferta limitată de <span className="text-accent font-bold text-2xl">10%</span> pentru toate loturile aflate în stoc!</p>
 
-          <div className="bg-accent/10 border-2 border-accent/30 rounded-lg p-3 mb-6">
-            <p className="text-primary font-semibold text-sm">Livrare GRATUITĂ la comenzi peste 3.900 RON</p>
-          </div>
+            <div className="bg-accent/10 border-2 border-accent/30 rounded-lg p-3 mb-6">
+              <p className="text-primary font-semibold text-sm">Livrare GRATUITĂ la comenzi peste 5.000 RON în București și Ilfov!</p>
+            </div>
 
           <p className="text-red-500 font-semibold mb-6 flex items-center justify-center">
             <TrendingUp className="w-5 h-5 mr-2" />
