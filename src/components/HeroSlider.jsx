@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) => {
+  const navigate = useNavigate();
   const [dragStartX, setDragStartX] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
 
@@ -55,7 +57,7 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
               <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-2xl">{slide.title}</h2>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8">{slide.subtitle}</p>
               <button 
-                onClick={() => setCurrentPage('categories')}
+                onClick={() => navigate('/categorii')}
                 className="bg-accent hover:bg-accent/80 text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition transform hover:scale-105 shadow-2xl"
               >
                 Explorează Colecția
