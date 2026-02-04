@@ -18,38 +18,16 @@ const slides = [
   }
 ];
 
-const HeroSlider = ({ setCurrentPage }) => {
-  const [current, setCurrent] = useState(0);
+const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) => {
   const [dragStartX, setDragStartX] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
-  const autoSwipeRef = useRef();
 
-  // Auto-swipe
-  useEffect(() => {
-    autoSwipeRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000);
-    return () => clearInterval(autoSwipeRef.current);
-  }, []);
-
-  // Pause auto-swipe and restart with delay when current changes
-  useEffect(() => {
-    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
-    const timeout = setTimeout(() => {
-      autoSwipeRef.current = setInterval(() => {
-        setCurrent((prev) => (prev + 1) % slides.length);
-      }, 4000);
-    }, 4000);
-    return () => clearTimeout(timeout);
-  }, [current]);
-
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   // Drag/Swipe handlers
   const handleDragStart = (e) => {
     setDragStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
-    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
   };
   const handleDragMove = (e) => {
     if (dragStartX === null) return;
@@ -67,11 +45,6 @@ const HeroSlider = ({ setCurrentPage }) => {
     }
     setDragStartX(null);
     setDragOffset(0);
-    setTimeout(() => {
-      autoSwipeRef.current = setInterval(() => {
-        setCurrent((prev) => (prev + 1) % slides.length);
-      }, 4000);
-    }, swiped ? 4000 : 0);
   };
 
   return (
@@ -89,8 +62,8 @@ const HeroSlider = ({ setCurrentPage }) => {
       {slides.map((slide, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-opacity duration-1000 ${idx === current ? 'opacity-100' : 'opacity-0'}`}
-          style={idx === current && dragOffset !== 0 ? { transform: `translateX(${dragOffset}px)` } : {}}
+          className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+          style={idx === currentSlide && dragOffset !== 0 ? { transform: `translateX(${dragOffset}px)` } : {}}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10" />
           <img
@@ -119,8 +92,8 @@ const HeroSlider = ({ setCurrentPage }) => {
         {slides.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`w-3 h-3 rounded-full transition-all ${idx === current ? 'bg-white w-8' : 'bg-white/50'}`}
+            onClick={() => setCurrentSlide(idx)}
+            className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white w-8' : 'bg-white/50'}`}
           />
         ))}
       </div>

@@ -30,7 +30,11 @@ const AppRouter = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isScrolled = useScrollPosition();
   const [showDealPopup, setShowDealPopup] = useDealPopup();
+  // Auto-slide for HeroSlider
   useSlideAutoScroll(SLIDES, setCurrentSlide);
+  // Auto-slide for FeaturedDeals
+  const [featuredDealIndex, setFeaturedDealIndex] = useState(0);
+  useSlideAutoScroll([1,2,3,4,5], setFeaturedDealIndex); // 5 featured deals
   useEffect(() => {
     document.title = 'FullFashionHouse - Haine Second Hand Premium';
   }, []);
@@ -50,6 +54,8 @@ const AppRouter = () => {
             setCurrentPage={() => {}}
             categories={CATEGORIES}
             featuredDeals={FEATURED_DEALS}
+            featuredDealIndex={featuredDealIndex}
+            setFeaturedDealIndex={setFeaturedDealIndex}
             whatsappLink={whatsappLink}
           />
         } />

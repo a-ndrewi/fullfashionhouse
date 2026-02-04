@@ -3,7 +3,7 @@ import HeroSlider from '../components/HeroSlider';
 import CategoriesHome from '../components/CategoriesHome';
 import FeaturedDeals from '../components/FeaturedDeals';
 
-const HomePage = ({ slides, currentSlide, setCurrentSlide, setCurrentPage, categories, featuredDeals, whatsappLink }) => {
+const HomePage = ({ slides, currentSlide, setCurrentSlide, setCurrentPage, categories, featuredDeals, whatsappLink, featuredDealIndex, setFeaturedDealIndex }) => {
   return (
     <>
       <HeroSlider 
@@ -17,6 +17,8 @@ const HomePage = ({ slides, currentSlide, setCurrentSlide, setCurrentPage, categ
       />
       <FeaturedDeals 
         featuredDeals={featuredDeals}
+        featuredDealIndex={featuredDealIndex}
+        setFeaturedDealIndex={setFeaturedDealIndex}
         whatsappLink={whatsappLink}
       />
     </>

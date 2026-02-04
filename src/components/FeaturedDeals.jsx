@@ -8,73 +8,39 @@ const lots = [
   { tag: 'Stoc Nou', item: 'Loturi Accesorii', price: 'de la 3,00 RON/kg' },
 ];
 
-const FeaturedDeals = () => {
+
+const FeaturedDeals = ({ featuredDealIndex, setFeaturedDealIndex }) => {
   const [dragStartX, setDragStartX] = useState(null);
   const [dragOffset, setDragOffset] = useState(0);
-  const [current, setCurrent] = useState(0);
   const containerRef = useRef();
-  const autoSwipeRef = useRef();
 
-  // Auto-swipe effect
-  // Helper to start auto-swipe with delay
-  const startAutoSwipe = () => {
-    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
-    autoSwipeRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % lots.length);
-    }, 4000);
-  };
-
-  useEffect(() => {
-    startAutoSwipe();
-    return () => clearInterval(autoSwipeRef.current);
-    // eslint-disable-next-line
-  }, []);
-
-  // Handle drag start
   const handleDragStart = (e) => {
     setDragStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
-    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
   };
 
-  // Handle drag move
   const handleDragMove = (e) => {
     if (dragStartX === null) return;
     const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
     setDragOffset(clientX - dragStartX);
   };
 
-  // Handle drag end
   const handleDragEnd = () => {
     let swiped = false;
     if (dragOffset > 60) {
-      setCurrent((prev) => (prev - 1 + lots.length) % lots.length);
+      setFeaturedDealIndex((prev) => (prev - 1 + lots.length) % lots.length);
       swiped = true;
     } else if (dragOffset < -60) {
-      setCurrent((prev) => (prev + 1) % lots.length);
+      setFeaturedDealIndex((prev) => (prev + 1) % lots.length);
       swiped = true;
     }
     setDragStartX(null);
     setDragOffset(0);
-    // Restart auto-swipe with delay after swipe
-    setTimeout(() => {
-      startAutoSwipe();
-    }, swiped ? 4000 : 0);
   };
-
-  // Get visible lots (3 at a time, center is current)
-  // Pause auto-swipe and restart with delay when current changes (from auto or manual)
-  useEffect(() => {
-    if (autoSwipeRef.current) clearInterval(autoSwipeRef.current);
-    const timeout = setTimeout(() => {
-      startAutoSwipe();
-    }, 4000);
-    return () => clearTimeout(timeout);
-  }, [current]);
 
   const getVisibleLots = () => {
     const visible = [];
     for (let i = -1; i <= 1; i++) {
-      visible.push(lots[(current + i + lots.length) % lots.length]);
+      visible.push(lots[(featuredDealIndex + i + lots.length) % lots.length]);
     }
     return visible;
   };
