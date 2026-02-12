@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 const lots = [
-  { tag: 'Ofertă Limitată', item: 'Loturi Haine Damă', price: 'de la 5,50 RON/kg' },
-  { tag: 'Promoție', item: 'Loturi Încălțăminte', price: 'de la 6,00 RON/kg' },
-  { tag: 'Super Preț', item: 'Loturi Geci & Jachete', price: 'de la 8,50 RON/kg' },
-  { tag: 'Noutate', item: 'Loturi Haine Copii', price: 'de la 4,50 RON/kg' },
-  { tag: 'Stoc Nou', item: 'Loturi Accesorii', price: 'de la 3,00 RON/kg' },
+  { tag: 'Ofertă Limitată', item: 'Loturi Haine Damă', price: 'de la 24,50 RON/kg' },
+  { tag: 'Promoție', item: 'Loturi Încălțăminte', price: 'de la 25,70 RON/kg' },
+  { tag: 'Super Preț', item: 'Loturi Geci & Jachete', price: 'de la 23,45 RON/kg' },
+  { tag: 'Noutate', item: 'Loturi Haine Copii', price: 'de la 21 RON/kg' },
+  { tag: 'Stoc Nou', item: 'Loturi Brico Pentru Casa', price: 'de la 15 RON/kg' },
 ];
 
 

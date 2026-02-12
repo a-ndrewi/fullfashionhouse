@@ -77,7 +77,7 @@ export const CATEGORIES_DATA = [
 export const CONTACT_INFO = {
   address: 'Soseaua Clinceni nr.3, Bragadiru, Ilfov',
   phone: '+40 769 787 780',
-  email: 'contact@fullfashionhouse.ro',
+  email: 'Purcaruflorin97@yahoo.com',
   coordinates: { lat: 44.374098, lng: 25.968964 }
 };
 
@@ -87,3 +87,60 @@ export const getWhatsappLink = (message = 'Bună ziua! Sunt interesat de loturil
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 };
+
+export const REVIEWS = [
+  {
+    name: 'Alexandru M.',
+    rating: 5,
+    text: 'Experiență excelentă! Produsele sunt exact așa cum au fost prezentate, calitate superioară. Procesul de achiziție a fost rapid și personalul foarte profesionist. Recomand cu încredere!',
+    date: 'Ianuarie 2026'
+  },
+  {
+    name: 'Maria P.',
+    rating: 5,
+    text: 'Sunt impresionată de sortimentul variat și de calitatea hainelor. Am comandat mai multe loturi și toate au depășit așteptările. Livrare promptă și prețuri foarte competitive!',
+    date: 'Ianuarie 2026'
+  },
+  {
+    name: 'Ion D.',
+    rating: 5,
+    text: 'Colaborez cu FullFashionHouse de 6 luni și sunt extrem de mulțumit. Marfa este întotdeauna de calitate, comunicarea este excelentă și livrările la timp. Parteneri de încredere!',
+    date: 'Decembrie 2025'
+  },
+  {
+    name: 'Elena R.',
+    rating: 5,
+    text: 'Cea mai bună alegere pentru business-ul meu! Calitate premium, prețuri avantajoase și servicii impecabile. Echipa este mereu disponibilă să răspundă la întrebări. 5 stele meritate!',
+    date: 'Decembrie 2025'
+  },
+  {
+    name: 'Gheorghe T.',
+    rating: 5,
+    text: 'Am deschis un magazin second hand și toate produsele le-am achiziționat de la FullFashionHouse. Clienții mei sunt încântați de calitate. Procesul de comandă este simplu și transparent!',
+    date: 'Noiembrie 2025'
+  },
+  {
+    name: 'Andreea S.',
+    rating: 5,
+    text: 'Încălțămintea premium este fenomenală! Branduri cunoscute, stare impecabilă, prețuri grozave. Am comandat și haine de brand - toate de calitate 1+. Mulțumesc pentru profesionalism!',
+    date: 'Noiembrie 2025'
+  },
+  {
+    name: 'Mihai V.',
+    rating: 5,
+    text: 'Comandă mare procesată fără probleme! Apreciez seriozitatea și onestitatea echipei. Produsele corespund descrierilor, fără surprize neplăcute. Recomand tuturor!',
+    date: 'Octombrie 2025'
+  },
+  {
+    name: 'Cristina B.',
+    rating: 5,
+    text: 'Calitate excepțională la prețuri imbatabile! Am testat mai mulți furnizori, dar FullFashionHouse este lider detașat. Sortiment variat, servicii rapide, personal amabil. Perfect!',
+    date: 'Octombrie 2025'
+  },
+  {
+    name: 'Radu N.',
+    rating: 5,
+    text: 'Sunt client fidel de peste un an. Fiecare comandă a fost o experiență pozitivă. Loturile sunt bine sortate, calitatea constantă, iar prețurile foarte competitive. Excelent!',
+    date: 'Septembrie 2025'
+  }
+];

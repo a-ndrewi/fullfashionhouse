@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
@@ -24,6 +24,47 @@ function ScrollToTop() {
   return null;
 }
 
+// Extract RoutedPages outside to prevent recreation on every render
+const RoutedPages = React.memo(({ 
+  currentSlide, 
+  setCurrentSlide, 
+  featuredDealIndex, 
+  setFeaturedDealIndex, 
+  whatsappLink 
+}) => {
+  const location = useLocation();
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/acasa" replace />} />
+      <Route path="/acasa" element={
+        <HomePage 
+          slides={SLIDES}
+          currentSlide={currentSlide}
+          setCurrentSlide={setCurrentSlide}
+          setCurrentPage={() => {}}
+          categories={CATEGORIES}
+          featuredDeals={FEATURED_DEALS}
+          featuredDealIndex={featuredDealIndex}
+          setFeaturedDealIndex={setFeaturedDealIndex}
+          whatsappLink={whatsappLink}
+        />
+      } />
+      <Route path="/lista-preturi" element={<PriceListPage whatsappLink={whatsappLink} />} />
+      <Route path="/categorii" element={
+        <CategoriesPage 
+          categoriesData={CATEGORIES_DATA}
+          whatsappLink={whatsappLink}
+          contactInfo={CONTACT_INFO}
+          setCurrentPage={() => {}}
+          selectedCategory={location.state && location.state.selectedCategory}
+        />
+      } />
+      <Route path="/contact" element={<ContactPage contactInfo={CONTACT_INFO} whatsappLink={whatsappLink} />} />
+      <Route path="/termeni-conditii-cookie-uri" element={<LegalPage />} />
+    </Routes>
+  );
+});
+
 const AppRouter = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showCookies, setShowCookies] = useState(true);
@@ -38,42 +79,7 @@ const AppRouter = () => {
   useEffect(() => {
     document.title = 'FullFashionHouse - Haine Second Hand Premium';
   }, []);
-  const whatsappLink = getWhatsappLink();
-
-  // useLocation must be called inside Router context, so wrap Routes in a child component
-  function RoutedPages() {
-    const location = useLocation();
-    return (
-      <Routes>
-        <Route path="/" element={<Navigate to="/acasa" replace />} />
-        <Route path="/acasa" element={
-          <HomePage 
-            slides={SLIDES}
-            currentSlide={currentSlide}
-            setCurrentSlide={setCurrentSlide}
-            setCurrentPage={() => {}}
-            categories={CATEGORIES}
-            featuredDeals={FEATURED_DEALS}
-            featuredDealIndex={featuredDealIndex}
-            setFeaturedDealIndex={setFeaturedDealIndex}
-            whatsappLink={whatsappLink}
-          />
-        } />
-        <Route path="/lista-preturi" element={<PriceListPage whatsappLink={whatsappLink} />} />
-        <Route path="/categorii" element={
-          <CategoriesPage 
-            categoriesData={CATEGORIES_DATA}
-            whatsappLink={whatsappLink}
-            contactInfo={CONTACT_INFO}
-            setCurrentPage={() => {}}
-            selectedCategory={location.state && location.state.selectedCategory}
-          />
-        } />
-        <Route path="/contact" element={<ContactPage contactInfo={CONTACT_INFO} whatsappLink={whatsappLink} />} />
-        <Route path="/termeni-conditii-cookie-uri" element={<LegalPage />} />
-      </Routes>
-    );
-  }
+  const whatsappLink = useMemo(() => getWhatsappLink(), []);
 
   return (
     <Router>
@@ -84,7 +90,13 @@ const AppRouter = () => {
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
         />
-        <RoutedPages />
+        <RoutedPages 
+          currentSlide={currentSlide}
+          setCurrentSlide={setCurrentSlide}
+          featuredDealIndex={featuredDealIndex}
+          setFeaturedDealIndex={setFeaturedDealIndex}
+          whatsappLink={whatsappLink}
+        />
         <DealPopup 
           showDealPopup={showDealPopup}
           setShowDealPopup={setShowDealPopup}

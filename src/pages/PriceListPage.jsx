@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FileText, MessageCircle } from 'lucide-react';
 
 const PriceListPage = ({ whatsappLink }) => {
   const [priceList, setPriceList] = useState([]);
   const [loadingPrices, setLoadingPrices] = useState(true);
   const [priceError, setPriceError] = useState(null);
+  const hasLoadedRef = useRef(false);
 
   useEffect(() => {
+    if (hasLoadedRef.current) return; // Prevent multiple loads
+    
     const fetchPrices = async () => {
       try {
         setLoadingPrices(true);
@@ -33,6 +36,7 @@ const PriceListPage = ({ whatsappLink }) => {
         setPriceList(items);
         setLoadingPrices(false);
         setPriceError(null);
+        hasLoadedRef.current = true;
       } catch (error) {
         console.error('Error fetching prices:', error);
         setPriceError('Nu s-au putut încărca prețurile. Vă rugăm reîncărcați pagina.');
@@ -41,8 +45,6 @@ const PriceListPage = ({ whatsappLink }) => {
     };
 
     fetchPrices();
-    const interval = setInterval(fetchPrices, 30000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -54,10 +56,6 @@ const PriceListPage = ({ whatsappLink }) => {
           <p className="text-base xs:text-lg sm:text-xl text-primary/60 max-w-2xl mx-auto px-2 sm:px-4">
             Toate prețurile sunt actualizate în timp real. Contactați-ne pentru oferte personalizate!
           </p>
-          <div className="mt-2 sm:mt-4 flex items-center justify-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-primary/40">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Actualizat automat</span>
-          </div>
         </div>
 
         <div className="bg-primary rounded-2xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-12 text-background text-center">
@@ -99,7 +97,7 @@ const PriceListPage = ({ whatsappLink }) => {
                           Denumire Produs
                         </th>
                         <th className="px-2 xs:px-4 sm:px-6 py-2 xs:py-3 sm:py-4 text-right text-xs sm:text-sm font-bold text-gray-700 uppercase tracking-wider">
-                          Preț (RON/kg)
+                          Preț (RON/kg) Fǎrǎ TVA
                         </th>
                       </tr>
                     </thead>
@@ -174,4 +172,4 @@ const PriceListPage = ({ whatsappLink }) => {
   );
 };
 
-export default PriceListPage;
+export default React.memo(PriceListPage);
