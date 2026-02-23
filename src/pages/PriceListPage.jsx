@@ -165,7 +165,7 @@ const PriceListPage = ({ whatsappLink }) => {
             <MessageCircle className="w-6 sm:w-7 h-6 sm:h-7 mr-2 sm:mr-3" />
             Comandă pe WhatsApp
           </a>
-          <p className="mt-4 text-sm sm:text-base text-primary/60">Sau sunați la: <a href="tel:+40769787780" className="font-bold text-accent hover:underline">+40 769 787 780</a></p>
+          <p className="mt-4 text-sm sm:text-base text-primary/60">Sau sunați la: <a href="tel:+40721912517" className="font-bold text-accent hover:underline">+40 721 912 517</a></p>
         </div>
       </div>
     </div>

@@ -20,7 +20,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
     });
   };
 
-  // Scroll to selected category on mount or when selectedCategory changes
   useEffect(() => {
     if (selectedCategory && sectionRefs.current) {
       const idx = categoriesData.findIndex(cat => cat.name === selectedCategory);
@@ -41,7 +40,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
           </p>
         </div>
 
-        {/* Category Sections */}
         {categoriesData.map((category, categoryIndex) => (
           <div
             key={categoryIndex}
@@ -50,7 +48,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
           >
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                {/* Image Carousel */}
                 <div className="relative h-56 xs:h-72 sm:h-[400px] md:h-[500px] overflow-hidden">
                   {category.images.map((image, imgIdx) => (
                     <div
@@ -98,7 +95,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
                   </div>
                 </div>
 
-                {/* Category Info */}
                 <div className="p-4 xs:p-6 sm:p-8 md:p-12 flex flex-col justify-center">
                   <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
                     {category.name}
@@ -150,7 +146,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
           </div>
         ))}
 
-        {/* Price List Summary */}
         <div className="bg-primary rounded-2xl p-6 sm:p-8 mb-12 text-background text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">Vrei să vezi lista completă de prețuri?</h2>
           <p className="text-base sm:text-xl mb-6 px-4">
@@ -165,7 +160,6 @@ const CategoriesPage = ({ categoriesData, whatsappLink, contactInfo, setCurrentP
           </button>
         </div>
 
-        {/* Special Offers */}
         <div className="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-6 sm:p-8">
           <div className="text-center mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Oferte Speciale</h2>

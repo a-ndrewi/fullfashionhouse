@@ -9,7 +9,6 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
-  // Drag/Swipe handlers
   const handleDragStart = (e) => {
     setDragStartX(e.type === 'touchstart' ? e.touches[0].clientX : e.clientX);
   };
@@ -66,8 +65,6 @@ const HeroSlider = ({ slides, currentSlide, setCurrentSlide, setCurrentPage }) =
           </div>
         </div>
       ))}
-
-      {/* Removed left/right arrow navigation buttons for a cleaner look */}
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
         {slides.map((_, idx) => (

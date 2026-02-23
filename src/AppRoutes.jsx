@@ -5,6 +5,7 @@ import CategoriesPage from './pages/CategoriesPage';
 import ContactPage from './pages/ContactPage';
 import PriceListPage from './pages/PriceListPage';
 import LegalPage from './pages/LegalPage';
+import GalleryPage from './pages/GalleryPage';
 
 const AppRoutes = ({
   slides,
@@ -25,7 +26,6 @@ const AppRoutes = ({
   isScrolled
 }) => (
   <Router>
-    {/* Navigation and global components should be outside Routes */}
     <Routes>
       <Route path="/" element={<Navigate to="/acasa" replace />} />
       <Route path="/acasa" element={
@@ -49,6 +49,7 @@ const AppRoutes = ({
         />
       } />
       <Route path="/contact" element={<ContactPage contactInfo={contactInfo} whatsappLink={whatsappLink} />} />
+      <Route path="/galerie-foto" element={<GalleryPage />} />
       <Route path="/termeni-conditii-cookie-uri" element={<LegalPage />} />
     </Routes>
   </Router>

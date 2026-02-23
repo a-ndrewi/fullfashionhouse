@@ -5,7 +5,6 @@ const ReviewsCarousel = ({ reviews }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
     
@@ -31,7 +30,6 @@ const ReviewsCarousel = ({ reviews }) => {
     setIsAutoPlaying(false);
   };
 
-  // Calculate visible reviews for desktop (3 cards)
   const getVisibleReviews = () => {
     const visible = [];
     for (let i = 0; i < 3; i++) {
@@ -43,7 +41,6 @@ const ReviewsCarousel = ({ reviews }) => {
   return (
     <section className="py-16 sm:py-20 bg-gradient-to-b from-background to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">
             Ce Spun Clienții Noștri
@@ -62,7 +59,6 @@ const ReviewsCarousel = ({ reviews }) => {
           </div>
         </div>
 
-        {/* Desktop: 3 Cards View */}
         <div className="hidden md:block relative">
           <div className="grid grid-cols-3 gap-6">
             {getVisibleReviews().map((review, idx) => (
@@ -100,7 +96,6 @@ const ReviewsCarousel = ({ reviews }) => {
             ))}
           </div>
 
-          {/* Navigation Arrows */}
           <button
             onClick={prevReview}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white hover:bg-accent hover:text-white text-accent rounded-full p-3 shadow-lg transition-all duration-300 transform hover:scale-110 z-10"
@@ -117,7 +112,6 @@ const ReviewsCarousel = ({ reviews }) => {
           </button>
         </div>
 
-        {/* Mobile: Single Card View */}
         <div className="md:hidden relative">
           <div className="bg-white rounded-2xl shadow-xl p-6">
             <div className="flex items-center justify-between mb-4">
@@ -144,7 +138,6 @@ const ReviewsCarousel = ({ reviews }) => {
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
               onClick={prevReview}
@@ -179,7 +172,6 @@ const ReviewsCarousel = ({ reviews }) => {
           </div>
         </div>
 
-        {/* Desktop Dots Navigation */}
         <div className="hidden md:flex justify-center gap-2 mt-8">
           {reviews.map((_, idx) => (
             <button

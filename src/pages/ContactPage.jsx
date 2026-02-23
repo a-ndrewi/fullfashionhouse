@@ -14,7 +14,6 @@ const ContactPage = ({ contactInfo, whatsappLink }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
-          {/* Contact Info Card */}
           <div className="bg-white rounded-2xl shadow-lg p-4 xs:p-6 sm:p-8">
             <h2 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Informații Contact</h2>
             
@@ -81,7 +80,6 @@ const ContactPage = ({ contactInfo, whatsappLink }) => {
             </a>
           </div>
 
-          {/* Map Card */}
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-64 xs:h-80 sm:h-96 md:h-[400px] relative">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1900.6396794528403!2d25.968333769779967!3d44.36564498700733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40adffb50b76f17f%3A0x2d8724d5a3caf47f!2s%C8%98oseaua%20Clinceni%203!5e0!3m2!1sen!2sro!4v1770129018561!5m2!1sen!2sro"

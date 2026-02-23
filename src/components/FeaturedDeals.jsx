@@ -76,7 +76,6 @@ const FeaturedDeals = ({ featuredDealIndex, setFeaturedDealIndex }) => {
             ))}
           </div>
         </div>
-        {/* Removed navigation buttons for a cleaner look */}
       </div>
     </div>
   );

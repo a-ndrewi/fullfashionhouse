@@ -17,15 +17,14 @@ const Navigation = ({ isScrolled, mobileMenuOpen, setMobileMenuOpen }) => {
             </div>
           </div>
           
-          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
             <button onClick={() => navigate('/acasa')} className={`${currentPath === '/acasa' ? 'text-accent' : isScrolled ? 'text-primary' : 'text-primary/80'} hover:text-accent transition font-medium`}>Acasă</button>
             <button onClick={() => navigate('/lista-preturi')} className={`${currentPath === '/lista-preturi' ? 'text-accent' : isScrolled ? 'text-primary' : 'text-primary/80'} hover:text-accent transition font-medium`}>Listă Prețuri</button>
             <button onClick={() => navigate('/categorii')} className={`${currentPath === '/categorii' ? 'text-accent' : isScrolled ? 'text-primary' : 'text-primary/80'} hover:text-accent transition font-medium`}>Categorii</button>
+            <button onClick={() => navigate('/galerie-foto')} className={`${currentPath === '/galerie-foto' ? 'text-accent' : isScrolled ? 'text-primary' : 'text-primary/80'} hover:text-accent transition font-medium`}>Galerie Foto</button>
             <button onClick={() => navigate('/contact')} className={`${currentPath === '/contact' ? 'text-accent' : isScrolled ? 'text-primary' : 'text-primary/80'} hover:text-accent transition font-medium`}>Contact</button>
           </div>
           
-          {/* Mobile Burger Menu */}
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -43,7 +42,6 @@ const Navigation = ({ isScrolled, mobileMenuOpen, setMobileMenuOpen }) => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-t border-primary/10 shadow-lg">
           <div className="px-2 py-2 space-y-2">
@@ -70,6 +68,14 @@ const Navigation = ({ isScrolled, mobileMenuOpen, setMobileMenuOpen }) => {
               }`}
             >
               Categorii
+            </button>
+            <button
+              onClick={() => { navigate('/galerie-foto'); setMobileMenuOpen(false); }}
+              className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition text-base ${
+                currentPath === '/galerie-foto' ? 'bg-accent/10 text-accent' : 'text-primary hover:bg-background/80'
+              }`}
+            >
+              Galerie Foto
             </button>
             <button
               onClick={() => { navigate('/contact'); setMobileMenuOpen(false); }}

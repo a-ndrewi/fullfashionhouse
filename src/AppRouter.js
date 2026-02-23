@@ -10,13 +10,14 @@ import CategoriesPage from './pages/CategoriesPage';
 import ContactPage from './pages/ContactPage';
 import PriceListPage from './pages/PriceListPage';
 import LegalPage from './pages/LegalPage';
+import GalleryPage from './pages/GalleryPage';
 import { SLIDES, CATEGORIES, FEATURED_DEALS, CATEGORIES_DATA, CONTACT_INFO, getWhatsappLink } from './constants/data';
 import { useScrollPosition, useSlideAutoScroll, useDealPopup } from './hooks';
 
 function ScrollToTop() {
   const { pathname, state } = useLocation();
   useEffect(() => {
-    // Only scroll to top if not navigating to a specific category
+  
     if (!(pathname === '/categorii' && state && state.selectedCategory)) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -24,7 +25,7 @@ function ScrollToTop() {
   return null;
 }
 
-// Extract RoutedPages outside to prevent recreation on every render
+
 const RoutedPages = React.memo(({ 
   currentSlide, 
   setCurrentSlide, 
@@ -60,6 +61,7 @@ const RoutedPages = React.memo(({
         />
       } />
       <Route path="/contact" element={<ContactPage contactInfo={CONTACT_INFO} whatsappLink={whatsappLink} />} />
+      <Route path="/galerie-foto" element={<GalleryPage />} />
       <Route path="/termeni-conditii-cookie-uri" element={<LegalPage />} />
     </Routes>
   );
@@ -71,13 +73,13 @@ const AppRouter = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isScrolled = useScrollPosition();
   const [showDealPopup, setShowDealPopup] = useDealPopup();
-  // Auto-slide for HeroSlider
+
   useSlideAutoScroll(SLIDES, setCurrentSlide);
-  // Auto-slide for FeaturedDeals
+  
   const [featuredDealIndex, setFeaturedDealIndex] = useState(0);
-  useSlideAutoScroll([1,2,3,4,5], setFeaturedDealIndex); // 5 featured deals
+  useSlideAutoScroll([1,2,3,4,5], setFeaturedDealIndex);
   useEffect(() => {
-    document.title = 'FullFashionHouse - Haine Second Hand Premium';
+    document.title = 'FullFashionHouse - Depozit Haine Second Hand';
   }, []);
   const whatsappLink = useMemo(() => getWhatsappLink(), []);
 
