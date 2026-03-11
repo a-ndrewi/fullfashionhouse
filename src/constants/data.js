@@ -76,12 +76,12 @@ export const CATEGORIES_DATA = [
 
 export const CONTACT_INFO = {
   address: 'Soseaua Clinceni nr.3, Bragadiru, Ilfov',
-  phone: '+40 721 912 517',
+  phone: '+40 735 292 139',
   email: 'Purcaruflorin97@yahoo.com',
   coordinates: { lat: 44.374098, lng: 25.968964 }
 };
 
-export const WHATSAPP_NUMBER = '+40721912517';
+export const WHATSAPP_NUMBER = '+40735292139';
 
 export const getWhatsappLink = (message = 'Bună ziua! Sunt interesat de loturile de haine second hand. Aș dori mai multe detalii.') => {
   const encodedMessage = encodeURIComponent(message);
